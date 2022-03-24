@@ -15,16 +15,16 @@ export default function Buttons({ value }: Props) {
   }
 
   return (
-    <div className="container flex flex-col items-center font-bold shadow-xl bg-neutral-300 text-neutral-900">
+    <div className="container flex flex-col items-center font-bold bg-sky-300 shadow-xl text-slate-900">
       <button
-        className="p-1 w-10 bg-emerald-600 hover:bg-emerald-800"
+        className="p-1 w-10 bg-emerald-500 hover:bg-emerald-600"
         onClick={() => handleClick('+', value)}
       >
         +
       </button>
       <p className="py-1">{value}</p>
       <button
-        className="p-1 w-10 bg-red-500 hover:bg-red-600"
+        className="p-1 w-10 bg-red-400 hover:bg-red-500"
         onClick={() => handleClick('', value)}
       >
         -

@@ -1,11 +1,17 @@
 import React from 'react';
 import { FaCopyright } from 'react-icons/fa';
 
+import wave from '../../assets/images/footer-wave.svg';
+
 export function Footer() {
   return (
-    <div className="flex gap-1 justify-center items-center p-1 w-screen text-sm font-extralight shadow-sm text-zinc-300 bg-zinc-900">
-      <FaCopyright />
-      Ninguém aqui é gringo produções
+    <div
+      style={{ backgroundImage: `url(${wave})` }}
+      className="flex relative justify-center p-1 w-screen h-52 bg-center bg-cover shadow-sm"
+    >
+      <p className="flex absolute bottom-2 gap-1 items-center text-sm font-extralight text-zinc-300">
+        <FaCopyright /> Ninguém aqui é gringo produções
+      </p>
     </div>
   );
 }

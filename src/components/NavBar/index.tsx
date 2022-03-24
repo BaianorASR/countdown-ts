@@ -11,11 +11,11 @@ export function NavBar() {
         <Buttons value={5} />
         <Buttons value={10} />
       </div>
-      <div className="container flex mt-4 text-gray-300 rounded-sm shadow-md bg-neutral-700">
-        <button className="flex flex-auto justify-center items-center pr-1 h-10 text-center hover:text-gray-600 hover:bg-emerald-600">
+      <div className="container flex mt-4 text-sky-300 rounded-sm shadow-md bg-slate-800">
+        <button className="flex flex-auto justify-center items-center pr-1 h-10 text-center hover:text-sky-900 hover:bg-emerald-600">
           <BsPlayFill />
         </button>
-        <button className="flex flex-auto justify-center items-center pl-1 h-10 text-center hover:text-gray-600 hover:bg-red-400">
+        <button className="flex flex-auto justify-center items-center pl-1 h-10 text-center hover:text-sky-900 hover:bg-red-400">
           <BsTrash2Fill />
         </button>
       </div>
