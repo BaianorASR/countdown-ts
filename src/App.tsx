@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useAppSelector } from './app/hooks/redux';
 import background from './assets/images/background.svg';
 import { Clock, Footer, Header, NavBar } from './components';
-import { RootState } from './shared/store';
 
 function App(): JSX.Element {
-  const { countdown } = useAppSelector((state: RootState) => state);
-
-  useEffect(() => {
-    console.log(countdown.ms);
-  });
-
   return (
     <div
       style={{ backgroundImage: `url(${background})` }}

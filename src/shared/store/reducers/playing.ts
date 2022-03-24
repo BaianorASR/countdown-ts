@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { handleMaxRangeMills, handleMinRangeMills } from '../../utils';
-
 type TInitialState = boolean;
 
 const initialState: TInitialState = false;
 
-const playing = createSlice({
-  name: 'playing',
+const isPlaying = createSlice({
+  name: 'isPlaying',
   initialState,
   reducers: {
-    actionChangePlayingStatus: state => !state,
+    actionChangePlayingStatus: (state, { payload }: PayloadAction<boolean>) => payload,
   },
 });
 
-export const { actionChangePlayingStatus } = playing.actions;
+export const { actionChangePlayingStatus } = isPlaying.actions;
 
-export default playing.reducer;
+export default isPlaying.reducer;

@@ -13,7 +13,7 @@ export function Clock() {
   }
 
   return (
-    <h1 className="p-2 text-8xl text-sky-200 bg-gray-800 rounded-md">
+    <h1 className="p-2 m-10 text-8xl text-sky-200 bg-gray-800 rounded-md">
       {msToMinutes(ms)}
     </h1>
   );
