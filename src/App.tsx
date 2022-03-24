@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import Counter from './features/counter/Counter';
+import { useAppSelector } from './app/hooks/redux';
+import { Clock, Footer, Header, NavBar } from './components';
+import { RootState } from './shared/store';
 
 function App(): JSX.Element {
+  const { countdown } = useAppSelector((state: RootState) => state);
+
+  useEffect(() => {
+    console.log(countdown.value);
+  });
+
   return (
-    <div className="App">
-      <Counter />
+    <div className="flex flex-col flex-auto justify-between items-center min-h-screen text-white bg-neutral-900">
+      <Header />
+      <Clock />
+      <NavBar />
+      <Footer />
     </div>
   );
 }
