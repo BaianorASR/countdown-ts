@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { handleMaxRangeMills, handleMinRangeMills } from '../../utils';
 
 type TInitialState = { ms: number };
 
@@ -9,10 +10,10 @@ const countdown = createSlice({
   initialState,
   reducers: {
     actionIncrement: (state, { payload }: PayloadAction<number>) => ({
-      ms: state.ms + payload,
+      ms: handleMaxRangeMills(state.ms + payload),
     }),
     actionDecrement: (state, { payload }: PayloadAction<number>) => ({
-      ms: state.ms - payload,
+      ms: handleMinRangeMills(state.ms - payload),
     }),
     actionResetTimer: () => ({ ...initialState }),
   },

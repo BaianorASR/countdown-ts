@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useAppSelector } from './app/hooks/redux';
+import background from './assets/images/background.svg';
 import { Clock, Footer, Header, NavBar } from './components';
 import { RootState } from './shared/store';
 
@@ -12,7 +13,10 @@ function App(): JSX.Element {
   });
 
   return (
-    <div className="flex flex-col flex-auto justify-between items-center min-h-screen text-white bg-neutral-900">
+    <div
+      style={{ backgroundImage: `url(${background})` }}
+      className="flex flex-col flex-auto justify-between items-center min-h-screen text-white bg-no-repeat bg-cover"
+    >
       <Header />
       <Clock />
       <NavBar />
