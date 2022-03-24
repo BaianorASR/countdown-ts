@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import countdown from './reducers/counter';
+import playing from './reducers/playing';
 
 // ...
 
 export const store = configureStore({
   reducer: {
     countdown,
+    playing,
   },
   devTools: true,
 });

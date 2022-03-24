@@ -1,5 +1,5 @@
 export function handleMaxRangeMills(payload: number) {
-  const ONE_HOUR = 60 * 1000;
+  const ONE_HOUR = 60 * 60 * 1000;
   return payload < ONE_HOUR ? payload : ONE_HOUR;
 }
 
