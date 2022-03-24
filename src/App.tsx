@@ -8,7 +8,7 @@ function App(): JSX.Element {
   const { countdown } = useAppSelector((state: RootState) => state);
 
   useEffect(() => {
-    console.log(countdown.value);
+    console.log(countdown.ms);
   });
 
   return (

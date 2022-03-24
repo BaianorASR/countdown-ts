@@ -1,20 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type TInitialState = { value: string };
+type TInitialState = { ms: number };
 
-const initialState: TInitialState = { value: '00:00:00' };
+const initialState: TInitialState = { ms: 0 };
 
 const countdown = createSlice({
-  name: 'countdown',
+  name: 'timer',
   initialState,
   reducers: {
-    actionTimer: (_state, action: PayloadAction<string>) => ({
-      value: action.payload,
+    actionIncrement: (state, { payload }: PayloadAction<number>) => ({
+      ms: state.ms + payload,
+    }),
+    actionDecrement: (state, { payload }: PayloadAction<number>) => ({
+      ms: state.ms - payload,
     }),
     actionResetTimer: () => ({ ...initialState }),
   },
 });
 
-export const { actionTimer, actionResetTimer } = countdown.actions;
+export const { actionIncrement, actionDecrement, actionResetTimer } = countdown.actions;
 
 export default countdown.reducer;
