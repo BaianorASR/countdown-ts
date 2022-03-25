@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../../app/hooks/redux';
-import { actionDecrement, actionIncrement } from '../../../shared/store/reducers/counter';
+import { useAppDispatch } from '../../app/hooks/redux';
+import { actionDecrement, actionIncrement } from '../../app/store/reducers/counter';
 
 type Props = { value: number };
 

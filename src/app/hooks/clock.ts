@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import * as A from '../../shared/store/reducers/counter';
-import { actionChangePlayingStatus } from '../../shared/store/reducers/playing';
+import * as A from '../store/reducers/counter';
+import { actionChangePlayingStatus } from '../store/reducers/playing';
 import { useAppDispatch, useAppSelector } from './redux';
 
 export function useClock() {

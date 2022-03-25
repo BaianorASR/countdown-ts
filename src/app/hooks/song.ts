@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { songs } from '../assets/sounds';
-import { useAppSelector } from './hooks/redux';
+import { songs } from '../../assets/sounds';
+import { useAppDispatch, useAppSelector } from './redux';
 
 export const useSong = () => {
   const { isPlaying } = useAppSelector(state => state);
   const [song, setSong] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
   const [songTime, setSongTime] = useState(0);
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const timer = audioRef.current?.currentTime;
     setSongTime(timer ? timer : 0);
@@ -22,7 +22,7 @@ export const useSong = () => {
         .then(() => {
           audio.volume = 0.2;
         })
-        .catch(error => {
+        .catch(() => {
           audio.load();
           audio.volume = 0.2;
           audio.play();
