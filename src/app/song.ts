@@ -15,9 +15,18 @@ export const useSong = () => {
   }, [audioRef.current?.currentTime]);
 
   const handlePlaySong = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
-      audioRef.current.volume = 0.2;
+    const audio = audioRef.current;
+    if (audio) {
+      audioRef.current
+        .play()
+        .then(() => {
+          audio.volume = 0.2;
+        })
+        .catch(error => {
+          audio.load();
+          audio.volume = 0.2;
+          audio.play();
+        });
     }
   };
 

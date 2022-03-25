@@ -22,7 +22,7 @@ export default function Buttons({ value }: Props) {
       >
         +
       </button>
-      <p className="py-1 text-sky-900">{value}</p>
+      <p className="py-1 text-sky-900">{value}m</p>
       <button
         className="p-1 w-10 rounded-b-sm bg-slate-800 hover:bg-red-400 hover:text-sky-900"
         onClick={() => handleClick('', value)}
