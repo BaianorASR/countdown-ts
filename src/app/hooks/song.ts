@@ -1,45 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import ReactPlayer from 'react-player/youtube';
 
-import { songs } from '../../assets/sounds';
+import MUSICS_DATA from '../../assets/sounds';
+import { actionChangeActualMusic, actionRandomMusics } from '../store/reducers/song';
 import { useAppDispatch, useAppSelector } from './redux';
 
+/* eslint-disable react-hooks/exhaustive-deps */
 export const useSong = () => {
-  const { isPlaying } = useAppSelector(state => state);
-  const [song, setSong] = useState('');
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [songTime, setSongTime] = useState(0);
+  const playerRef = useRef<ReactPlayer>(null);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    const timer = audioRef.current?.currentTime;
-    setSongTime(timer ? timer : 0);
-  }, [audioRef.current?.currentTime]);
+  const {
+    isPlaying,
+    songs: { actual_song, all_songs },
+  } = useAppSelector(state => state);
 
-  const handlePlaySong = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audioRef.current
-        .play()
-        .then(() => {
-          audio.volume = 0.2;
-        })
-        .catch(() => {
-          audio.load();
-          audio.volume = 0.2;
-          audio.play();
-        });
-    }
-  };
+  const getNextSong = () =>
+    actual_song.id === null
+      ? 0
+      : all_songs.findIndex(each => each.id === actual_song.id) + 1;
 
-  useEffect(() => {
-    if (isPlaying) {
-      setSong(() => {
-        const random = Math.floor(Math.random() * songs.length);
-        return songs[random];
-      });
-      handlePlaySong();
-    }
-    audioRef.current?.pause();
+  const ACTUAL_SONG = useMemo(() => {
+    console.log();
+    return {
+      is_playing_music: isPlaying,
+      ...all_songs[getNextSong()],
+    };
   }, [isPlaying]);
 
-  return { audioRef, song, songTime };
+  useEffect(() => {
+    const shuffled = MUSICS_DATA.sort(() => Math.random() - 0.5);
+    dispatch(actionRandomMusics(shuffled));
+  }, []);
+
+  useEffect(() => {
+    isPlaying && dispatch(actionChangeActualMusic(ACTUAL_SONG));
+  }, [ACTUAL_SONG, dispatch, isPlaying]);
+
+  return { playerRef, actual_song };
 };
