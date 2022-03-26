@@ -1,27 +1,50 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+type all_songs = {
+  id: number;
+  name: string;
+  url: string;
+};
+
+type actual_song = {
+  url: string;
+  is_playing_music: boolean;
+  id: number | null;
+  name: string;
+};
 
 type initialState = {
-  current_time: number;
-  actual_song: {
-    duration: string;
-  };
+  actual_song: actual_song;
+  all_songs: all_songs[] | [];
 };
 
 const initialState: initialState = {
-  current_time: 0,
   actual_song: {
-    duration: '',
+    id: null,
+    is_playing_music: false,
+    name: '',
+    url: '',
   },
+  all_songs: [],
 };
 
 const songs = createSlice({
   name: 'songs',
   initialState,
   reducers: {
-    actionDefault: state => state,
+    actionChangeActualMusic: (state, { payload }: PayloadAction<actual_song>) => {
+      return {
+        ...state,
+        actual_song: { ...state.actual_song, ...payload },
+      };
+    },
+    actionRandomMusics: (state, { payload }: PayloadAction<all_songs[]>) => ({
+      ...state,
+      all_songs: payload,
+    }),
   },
 });
 
-export const { actionDefault } = songs.actions;
+export const { actionRandomMusics, actionChangeActualMusic } = songs.actions;
 
 export default songs.reducer;
