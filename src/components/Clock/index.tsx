@@ -13,7 +13,10 @@ export function Clock() {
   }
 
   return (
-    <h1 className="p-6 m-10 max-w-sm text-8xl text-sky-200 rounded-lg shadow-md bg-slate-800">
+    <h1
+      style={{ fontFamily: "'JetBrains Mono', monospace" }}
+      className="p-6 m-10 max-w-sm text-8xl text-sky-200 rounded-lg shadow-md bg-slate-800"
+    >
       {msToMinutes(ms)}
     </h1>
   );
