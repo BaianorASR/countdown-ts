@@ -1,4 +1,6 @@
-const MUSICS_DATA = [
+type MUSICS_DATA = { id: number; name: string; url: string }[];
+
+const MUSICS_DATA: MUSICS_DATA = [
   {
     id: 0,
     name: 'Egzod & Maestro Chives - Royalty',

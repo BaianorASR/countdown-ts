@@ -15,14 +15,16 @@ export function useClock() {
   } = useAppSelector(state => state);
 
   const shouldResetTimer = useCallback(() => {
-    clearTimeout(interval_id);
-    dispatch(actionChangePlayingStatus(false));
-    dispatch(A.actionDecrement(ms));
-    dispatch(A.actionSetIntervalID());
-  }, [dispatch, interval_id, ms]);
+    if (isPlaying) {
+      clearTimeout(interval_id);
+      dispatch(actionChangePlayingStatus(false));
+      dispatch(A.actionDecrement(ms));
+      dispatch(A.actionSetIntervalID());
+    }
+  }, [dispatch, interval_id, isPlaying, ms]);
 
   useEffect(() => {
-    if (!ms) {
+    if (ms < 2000) {
       setDisablePlay(true);
       shouldResetTimer();
     } else setDisablePlay(false);

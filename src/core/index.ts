@@ -1,3 +1,3 @@
 export * from './Buttons';
 export * from './ProgressBar';
-export * from './MusicCard';
+export { default as MusicCard } from './MusicCard';

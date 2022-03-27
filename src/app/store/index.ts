@@ -5,11 +5,7 @@ import isPlaying from './reducers/playing';
 import songs from './reducers/song';
 
 export const store = configureStore({
-  reducer: {
-    countdown,
-    isPlaying,
-    songs,
-  },
+  reducer: { countdown, isPlaying, songs },
   devTools: true,
 });
 

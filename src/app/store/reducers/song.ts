@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import MUSICS_DATA from '../../../assets/sounds';
+
 type all_songs = {
   id: number;
   name: string;
@@ -8,7 +10,7 @@ type all_songs = {
 
 type actual_song = {
   url: string;
-  is_playing_music: boolean;
+  is_playing_music?: boolean;
   id: number | null;
   name: string;
 };
@@ -25,7 +27,7 @@ const initialState: initialState = {
     name: '',
     url: '',
   },
-  all_songs: [],
+  all_songs: MUSICS_DATA.sort(() => Math.random() - 0.5),
 };
 
 const songs = createSlice({
@@ -38,13 +40,13 @@ const songs = createSlice({
         actual_song: { ...state.actual_song, ...payload },
       };
     },
-    actionRandomMusics: (state, { payload }: PayloadAction<all_songs[]>) => ({
+    actionMusicPlayingStatus: (state, { payload }: PayloadAction<boolean>) => ({
       ...state,
-      all_songs: payload,
+      actual_song: { ...state.actual_song, is_playing_music: payload },
     }),
   },
 });
 
-export const { actionRandomMusics, actionChangeActualMusic } = songs.actions;
+export const { actionMusicPlayingStatus, actionChangeActualMusic } = songs.actions;
 
 export default songs.reducer;
