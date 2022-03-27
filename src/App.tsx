@@ -7,7 +7,7 @@ function App(): JSX.Element {
   return (
     <div
       style={{ backgroundImage: `url(${background})` }}
-      className="flex flex-col flex-auto justify-between items-center min-h-screen text-white bg-center bg-no-repeat bg-cover"
+      className="flex flex-col justify-between items-center min-h-screen text-white bg-center bg-no-repeat bg-cover"
     >
       <Header />
       <Clock />

@@ -1,10 +1,10 @@
-import React, { memo, useMemo, useState } from 'react';
+import React, { FC, memo, useMemo, useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
 
-import { useSong } from '../../app/hooks';
-import { ProgressBar } from '../ProgressBar';
+import { PlayerControls, ProgressBar } from '../../';
+import { useSong } from '../../../app/hooks';
 
-function MusicCard() {
+const MusicCard: FC = (): JSX.Element => {
   const { playerRef, actual_song, getNextSong } = useSong();
   const [currentTime, setCurrentTime] = useState<number>();
 
@@ -17,7 +17,7 @@ function MusicCard() {
   }, [currentTime, playerRef]);
 
   return (
-    <div className="w-52">
+    <div className="flex w-60">
       <ReactPlayer
         onProgress={progress => setCurrentTime(progress.playedSeconds)}
         volume={0.2}
@@ -28,18 +28,19 @@ function MusicCard() {
         playing={actual_song.is_playing_music}
       />
       {actual_song.is_playing_music && (
-        <>
+        <div className="flex flex-col gap-3">
           <p
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
-            className="text-sm font-light"
+            className="text-xs font-light"
           >
             {actual_song.name}
           </p>
           <ProgressBar progress={progress} />
-        </>
+        </div>
       )}
+      <PlayerControls />
     </div>
   );
-}
+};
 
-export default memo(MusicCard);
+export const MusicPlayer = memo(MusicCard);

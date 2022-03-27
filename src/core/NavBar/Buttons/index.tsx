@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../app/hooks';
-import { actionDecrement, actionIncrement } from '../../app/store/reducers';
+import { useAppDispatch } from '../../../app/hooks';
+import { actionDecrement, actionIncrement } from '../../../app/store/reducers';
 
-type Props = { value: number };
+type ButtonsProps = { value: number };
 
-export default function Buttons({ value }: Props) {
+export const Buttons: FC<ButtonsProps> = ({ value }): JSX.Element => {
   const dispatch = useAppDispatch();
 
   function handleClick(operation: string, value: number) {
@@ -31,4 +31,4 @@ export default function Buttons({ value }: Props) {
       </button>
     </div>
   );
-}
+};

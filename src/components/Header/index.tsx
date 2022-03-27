@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { MusicCard } from '../../core';
+import { useAppSelector } from '../../app/hooks';
+import { MusicPlayer } from '../../core';
 
-export function Header() {
+export const Header: FC = (): JSX.Element => {
+  const { isPlaying } = useAppSelector(state => state);
   return (
-    <div className="flex justify-between px-5 items-center h-16 min-w-full shadow-md bg-slate-800">
-      <h1>Countdown-ts</h1>
+    <div className="flex justify-between items-center px-5 min-w-full h-16 shadow-md bg-slate-800">
+      {!isPlaying && <h1>Countdown-ts</h1>}
       <div>
-        <MusicCard />
+        <MusicPlayer />
       </div>
     </div>
   );
-}
+};
