@@ -1,23 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import * as A from '../store/reducers/counter';
-import { actionChangePlayingStatus } from '../store/reducers/playing';
+import * as A from '../store/reducers';
 import { useAppDispatch, useAppSelector } from './redux';
 
 export function useClock() {
-  const [disablePlayButton, setDisablePlay] = useState(false);
-
+  const [disablePlayButton, setDisablePlay] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-
   const {
     isPlaying,
     countdown: { interval_id, ms },
   } = useAppSelector(state => state);
 
   const shouldResetTimer = useCallback(() => {
+    console.log('fui montado');
     if (isPlaying) {
       clearTimeout(interval_id);
-      dispatch(actionChangePlayingStatus(false));
+      dispatch(A.actionChangePlayingStatus(false));
       dispatch(A.actionDecrement(ms));
       dispatch(A.actionSetIntervalID());
     }
@@ -39,12 +37,12 @@ export function useClock() {
 
   const handleCountPause = () => {
     clearInterval(interval_id);
-    dispatch(actionChangePlayingStatus(!isPlaying));
+    dispatch(A.actionChangePlayingStatus(!isPlaying));
     dispatch(A.actionSetIntervalID());
   };
 
   const handleCountPlay = () => {
-    dispatch(actionChangePlayingStatus(!isPlaying));
+    dispatch(A.actionChangePlayingStatus(!isPlaying));
     dispatch(A.actionSetIntervalID(INTERVAL()));
   };
 

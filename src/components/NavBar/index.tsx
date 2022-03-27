@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsPause, BsPlayFill, BsTrash2Fill } from 'react-icons/bs';
 
-import { useClock } from '../../app/hooks/clock';
+import { useClock } from '../../app/hooks';
 import Buttons from '../../core/Buttons';
 
 export function NavBar() {

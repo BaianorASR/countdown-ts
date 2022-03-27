@@ -1,7 +1,7 @@
 // import moment from 'moment';
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks/redux';
+import { useAppSelector } from '../../app/hooks';
 
 export function Clock() {
   const { ms } = useAppSelector(state => state.countdown);

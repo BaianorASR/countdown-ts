@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
 
-import { useSong } from '../../app/hooks/song';
+import { useSong } from '../../app/hooks';
 import { ProgressBar } from '../ProgressBar';
 
 function MusicCard() {
@@ -27,8 +27,17 @@ function MusicCard() {
         url={actual_song.url}
         playing={actual_song.is_playing_music}
       />
-      {actual_song.is_playing_music && <p>{actual_song.name}</p>}
-      <ProgressBar progress={progress} />
+      {actual_song.is_playing_music && (
+        <>
+          <p
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className="text-sm font-light"
+          >
+            {actual_song.name}
+          </p>
+          <ProgressBar progress={progress} />
+        </>
+      )}
     </div>
   );
 }
